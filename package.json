@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "lit": "^3.1.2"
+  },
+  "name": "ajc-portfolio",
+  "description": "Portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zach Dodson",
+  "license": "ISC"
+}

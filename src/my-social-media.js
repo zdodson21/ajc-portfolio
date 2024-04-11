@@ -42,5 +42,21 @@ To Implement:
     * Bluesky
     * Soundcloud
     * Spotify
+    * YouTube
+    * Vimeo
+    * Dropbox
+    * DeviantArt
+    * BandCamp
+    * Wordpress
+    * Wix
+    * Website
+    * Goodreads
+    * Medium
+    * Behance
+    * Cameo
+    * Google My Business
+    * IndieGoGo
+    * KickStarter
+    * Nintendo
 
 */

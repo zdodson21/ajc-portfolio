@@ -60,7 +60,7 @@ export class PictureFrame extends LitElement {
         return html`
             <div class='img-container'>
                 <div class='frame-item'>
-                    <img  src="${this.src}" alt="${this.alt}">
+                    <img src="${this.src}" alt="${this.alt}">
                 </div>    
                 <div class='frame-item'>
                     <p>${this.caption}</p>

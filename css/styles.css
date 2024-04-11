@@ -1,6 +1,6 @@
 @import url(variables.css);
 
 html {
-    background-color: var(--ajc-theme-default-gray7);
-    color: var(--ajc-theme-default-white);
+    background-color: var(--ajc-color-default-gray7);
+    color: var(--ajc-color-default-white);
 }

@@ -8,8 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "web-dev-server --node-resolve --open --watch",
-    "build": "rollup --config"
+    "start": "web-dev-server --node-resolve --open --watch"
   },
   "author": {
     "name": "Zach Dodson",

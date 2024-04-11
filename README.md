@@ -12,3 +12,7 @@ Zach Dodson
 * [Linkedin](https://www.linkedin.com/in/zach-dodson-psu/)
 
 ---
+
+### Features to add
+
+* Video player in picture-frame.js

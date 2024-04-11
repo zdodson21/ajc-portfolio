@@ -17,12 +17,13 @@ export class PictureFrame extends LitElement {
         this.caption = '';
         this.href = '';
         this.anchorText = '';
+        this.border = true;
     }
 
     static get styles() {
         return css`
             
-            .img-container {
+            :host([border]) .img-container {
                 border-style: var(--ajc-border-default-frame1);
             }
 
@@ -83,7 +84,7 @@ export class PictureFrame extends LitElement {
      */
     imageTop() {
         return html`
-            
+
         `
     }
 
@@ -108,6 +109,10 @@ export class PictureFrame extends LitElement {
             anchorText: {
                 type: String,
             },
+            border: {
+                type: Boolean,
+                reflect: true,
+            }
         };
     }
 }

@@ -23,8 +23,6 @@ export class PictureFrame extends LitElement {
 
     static get styles() {
         return css`
-
-
             :host([type='image']) .frame-image img{
                 display: content;
             } :host([type='image']) .frame-image video{
@@ -56,7 +54,6 @@ export class PictureFrame extends LitElement {
             .picture-frame-container {
                 display: flex;
                 justify-content: center;
-                
             }
 
             .img-container {
@@ -85,7 +82,7 @@ export class PictureFrame extends LitElement {
     render() {
         if (this.type !== 'image' && this.type !== 'video' && this.type !== 'youtube') {
             return html `
-                <p><strong> Please set the type attribute to 'image', 'video', or 'youtube'</strong></p>
+                <p><strong> Please set the 'type' attribute to 'image', 'video', or 'youtube'!</strong></p>
             `
         } else if (this.displayLocation === 'left' || this.displayLocation === 'l') {
             return this.imageLeft();
@@ -95,14 +92,11 @@ export class PictureFrame extends LitElement {
             return this.imageTop();
         } else {
             return html`
-                <p><strong>Please set the 'img-location' attribute to either left (l), right (r), top (r)</strong></p>
+                <p><strong>Please set the 'display-location' attribute to either left (l), right (r), or top (r)!</strong></p>
             `
         }
     }
 
-    /**
-     * Default
-     */
     imageLeft() {
         return html`
             <div class='picture-frame-container'>
@@ -183,7 +177,7 @@ export class PictureFrame extends LitElement {
             },
             anchorText: {
                 type: String,
-                attribute: 'anchor-text'
+                attribute: 'anchor-text',
             },
             border: {
                 type: Boolean,

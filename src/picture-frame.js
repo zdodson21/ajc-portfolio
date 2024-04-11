@@ -27,8 +27,13 @@ export class PictureFrame extends LitElement {
                 border-style: var(--ajc-border-default-frame1);
             }
 
+            .img-container {
+                display: flex;
+                padding: var(--ajc-spacing-default-4);
+            }
+
             .img-container .frame-item {
-                width: 50%;
+                width: 100%;
             }
 
             :host([href = '']) a {
@@ -58,11 +63,11 @@ export class PictureFrame extends LitElement {
      */
     imageLeft() {
         return html`
-            <div class='img-container'>
-                <div class='frame-item'>
+            <div class='img-container img-container-left'>
+                <div class='frame-item frame-image'>
                     <img src="${this.src}" alt="${this.alt}">
                 </div>    
-                <div class='frame-item'>
+                <div class='frame-item frame-text'>
                     <p>${this.caption}</p>
                     <a href="${this.href}">${this.anchorText}</a>
                 </div>
@@ -75,7 +80,15 @@ export class PictureFrame extends LitElement {
      */
     imageRight() {
         return html`
-        
+            <div class='img-container img-container-right'>
+                <div class='frame-item frame-text'>
+                    <p>${this.caption}</p>
+                    <a href="${this.href}">${this.anchorText}</a>
+                </div>
+                <div class='frame-item frame-image'>
+                    <img src="${this.src}" alt="${this.alt}">
+                </div>   
+            </div>
         `
     }
 

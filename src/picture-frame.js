@@ -39,14 +39,15 @@ export class PictureFrame extends LitElement {
     }
 
     render() {
-        console.log('rendering...')
         if (this.imgLocation === 'left' || this.imgLocation === 'l') {
             return this.imageLeft();
-        } else if (this.imgLocation === 'right' || this.imgLocation === 'r'){
+        } else if (this.imgLocation === 'right' || this.imgLocation === 'r') {
             return this.imageRight();
+        } else if (this.imgLocation === 'top' || this.imgLocation === 't') {
+            return this.imageTop();
         } else {
             return html`
-                <p><strong>Please set the 'img-location' attribute to either left (l) or right (r)</strong></p>
+                <p><strong>Please set the 'img-location' attribute to either left (l), right (r), top (r)</strong></p>
             `
         }
     }
@@ -77,9 +78,18 @@ export class PictureFrame extends LitElement {
         `
     }
 
+    /**
+     * Image above caption and anchor
+     */
+    imageTop() {
+        return html`
+            
+        `
+    }
+
     static get properties() {
         return {
-            textLocation: {
+            imgLocation: {
                 type: String,
                 attribute: 'img-location',
             },

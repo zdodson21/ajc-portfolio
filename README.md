@@ -38,7 +38,7 @@ Zach Dodson
       * **Description**: The source location of the piece of media you wish to display. Can be a local directory or a link (depending on the `type`).
     * `alt`
       * **Type**: String
-      * **Description**: Alternative text in case image does not load, or no `src` attribute is defined when `type="image`.
+      * **Description**: Alternative text in case image does not load, or no `src` attribute is defined when `type="image`. Also important for accessibility.
     * `caption`
       * **Type**: String
       * **Description**: Text description of piece of media.

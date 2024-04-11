@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "web-dev-server --node-resolve --open --watch"
+    "start": "web-dev-server --node-resolve --open --watch",
+    "build": "rollup --config"
   },
   "author": {
     "name": "Zach Dodson",
@@ -19,6 +20,9 @@
     "lit": "^3.1.2"
   },
   "devDependencies": {
-    "@web/dev-server": "^0.4.4"
+    "@web/dev-server": "^0.4.4",
+    "@web/rollup-plugin-copy": "^0.5.1",
+    "@web/rollup-plugin-html": "^2.3.0",
+    "rollup": "^4.14.1"
   }
 }

@@ -1,6 +1,13 @@
 @import url(variables.css);
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 html {
     background-color: var(--ajc-color-default-gray7);
     color: var(--ajc-color-default-white);
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+h1 {
+    text-align: center;
 }

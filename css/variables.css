@@ -11,6 +11,7 @@
     --ajc-border-default-frame2: ridge;
 
     /* Spacing */
+    --ajc-spacing-default-0: 0px;
     --ajc-spacing-default-1: 2px;
     --ajc-spacing-default-2: 4px;
     --ajc-spacing-default-3: 8px;

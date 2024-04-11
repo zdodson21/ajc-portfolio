@@ -8,6 +8,10 @@ html {
     font-optical-sizing: auto;
 }
 
+body {
+    margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-10);
+}
+
 h1 {
     text-align: center;
 }

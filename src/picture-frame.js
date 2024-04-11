@@ -12,11 +12,23 @@ export class PictureFrame extends LitElement {
     constructor() {
         super();
         this.imgLocation = '';
+        this.src = '';
+        this.alt = '';
+        this.caption = '';
     }
 
     static get styles() {
         return css`
-        
+            
+            .img-container {
+                border-style: var(--ajc-border-default-frame1);
+            }
+
+            .img-container .frame-item {
+                width: 50%;
+            }
+
+            /* two image classes, image-tall & image-wide */
         `
     }
 
@@ -28,7 +40,7 @@ export class PictureFrame extends LitElement {
             return this.imageRight();
         } else {
             return html`
-                <p><strong>Please set the 'img-location' attribute to either left or right</strong></p>
+                <p><strong>Please set the 'img-location' attribute to either left (l) or right (r)</strong></p>
             `
         }
     }
@@ -38,7 +50,10 @@ export class PictureFrame extends LitElement {
      */
     imageLeft() {
         return html`
-
+            <div class='img-container'>
+                <img class='frame-item' src="${this.src}" alt="${this.alt}">
+                <p class='frame-item'>${this.caption}</p>
+            </div>
         `
     }
 
@@ -56,7 +71,16 @@ export class PictureFrame extends LitElement {
             textLocation: {
                 type: String,
                 attribute: 'img-location',
-            }
+            },
+            src: {
+                type: String,
+            },
+            alt: {
+                type: String,
+            },
+            caption: {
+                type: String,
+            },
         };
     }
 }

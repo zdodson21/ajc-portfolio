@@ -40,5 +40,7 @@ To Implement:
     * Tumblr
     * Mastodon
     * Bluesky
+    * Soundcloud
+    * Spotify
 
 */

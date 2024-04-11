@@ -17,7 +17,7 @@ export class PictureFrame extends LitElement {
         this.caption = '';
         this.href = '';
         this.anchorText = '';
-        this.type = '';
+        this.type = ''; // maybe add document type if I can figure out how to make it work
         this.border = true;
     }
 

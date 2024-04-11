@@ -15,6 +15,8 @@ export class PictureFrame extends LitElement {
         this.src = '';
         this.alt = '';
         this.caption = '';
+        this.href = '';
+        this.anchorText = '';
     }
 
     static get styles() {
@@ -26,6 +28,10 @@ export class PictureFrame extends LitElement {
 
             .img-container .frame-item {
                 width: 50%;
+            }
+
+            :host([href = '']) a {
+                display: none;
             }
 
             /* two image classes, image-tall & image-wide */
@@ -51,8 +57,13 @@ export class PictureFrame extends LitElement {
     imageLeft() {
         return html`
             <div class='img-container'>
-                <img class='frame-item' src="${this.src}" alt="${this.alt}">
-                <p class='frame-item'>${this.caption}</p>
+                <div class='frame-item'>
+                    <img  src="${this.src}" alt="${this.alt}">
+                </div>    
+                <div class='frame-item'>
+                    <p>${this.caption}</p>
+                    <a href="${this.href}">${this.anchorText}</a>
+                </div>
             </div>
         `
     }
@@ -79,6 +90,12 @@ export class PictureFrame extends LitElement {
                 type: String,
             },
             caption: {
+                type: String,
+            },
+            href: {
+                type: String,
+            },
+            anchorText: {
                 type: String,
             },
         };

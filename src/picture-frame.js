@@ -19,6 +19,7 @@ export class PictureFrame extends LitElement {
         this.anchorText = '';
         this.type = ''; // maybe add document type if I can figure out how to make it work
         this.border = true;
+        this.fileName = '';
     }
 
     static get styles() {
@@ -127,8 +128,13 @@ export class PictureFrame extends LitElement {
                         <img class='image' src="${this.src}" alt="${this.alt}">
                         <video class='video' src="${this.src}" controls></video>
                         <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <!-- <iframe class="pdf" width="420" src="${this.src}" frameborder="0"></iframe>  -->
-                        <!-- Implement PDFObject npm -->
+                        <div class='pdf'>
+                            <iframe src="" frameborder="0"></iframe>
+                            <div class='pdf-controls'>
+                                <a href="${this.src}" target='_blank'>Preview</a>
+                                <a href="${this.src}" download='${this.fileName}'>Download</a>
+                            </div>
+                        </div>
                     </div>    
                     <div class='frame-item frame-text'>
                         <p class='caption'>${this.caption}</p>
@@ -211,7 +217,10 @@ export class PictureFrame extends LitElement {
             type: {
                 type: String,
             },
-
+            fileName: {
+                type: String,
+                attribute: 'file-name',
+            },
         };
     }
 }

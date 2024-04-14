@@ -51,7 +51,7 @@ Zach Dodson
       * **Description**: The text displayed instead of the link text. If left blank, link text will display instead.
     * `type`
       * **Type**: Boolean
-      * **Description**: Type of media being presented
+      * **Description**: Type of media being presented.
       * **Applicable Values**:
         * `image` - local directory image file or image link
         * `video` - local directory video file
@@ -59,9 +59,12 @@ Zach Dodson
         * `pdf` - PDF File. Will also generate clickable text to preview PDF in new tab, or download the file onto the user's device. *NOT YET IMPLEMENTED*
     * `border`
       * **Type**: Boolean
-      * **Description**: Displays a border around the whole element
+      * **Description**: Displays a border around the whole element.
       * **Applicable Values**:
         * `true` (default) - Border is shown
         * `false` - Border is not shown
+    * `file-name`
+      * **Type**: String
+      * **Description**: The name for a downloadable file.
 
 ---

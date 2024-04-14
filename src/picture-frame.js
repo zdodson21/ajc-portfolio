@@ -23,33 +23,59 @@ export class PictureFrame extends LitElement {
 
     static get styles() {
         return css`
-            :host([type='image']) .frame-image img{
+            :host([type='image']) .frame-image .image {
                 display: content;
-            } :host([type='image']) .frame-image video{
+            } :host([type='image']) .frame-image .video {
                 display: none;
-            } :host([type='image']) .frame-image iframe{
+            } :host([type='image']) .frame-image .youtube {
+                display: none;
+            } :host([type='image']) .frame-image .pdf {
                 display: none;
             }
 
-            :host([type='video']) .frame-image img{
+            :host([type='video']) .frame-image .image {
                 display: none;
-            } :host([type='video']) .frame-image video{
+            } :host([type='video']) .frame-image .video {
                 display: content;
-            } :host([type='video']) .frame-image iframe{
+            } :host([type='video']) .frame-image .youtube {
+                display: none;
+            } :host([type='video']) .frame-image .pdf {
                 display: none;
             }
 
-            :host([type='youtube']) .frame-image img{
+            :host([type='youtube']) .frame-image .image {
                 display: none;
-            } :host([type='youtube']) .frame-image video{
+            } :host([type='youtube']) .frame-image .video {
                 display: none;
-            } :host([type='youtube']) .frame-image iframe{
+            } :host([type='youtube']) .frame-image .youtube {
+                display: content;
+            } :host([type='youtube']) .frame-image .pdf {
+                display: none;
+            }
+
+            :host([type='pdf']) .frame-image .image {
+                display: none;
+            } :host([type='pdf']) .frame-image .video {
+                display: none;
+            } :host([type='pdf']) .frame-image .youtube {
+                display: none;
+            } :host([type='pdf']) .frame-image .pdf {
                 display: content;
             }
 
             :host([border]) .img-container {
                 border-style: var(--ajc-border-default-frame1);
             }
+
+            :host([caption='']) .caption {
+                display: none;
+            }
+
+            :host([href = '']) .url {
+                display: none;
+            }
+
+            /* Create statement that will set display: none; when both caption & href are empty */
 
             .picture-frame-container {
                 display: flex;
@@ -67,12 +93,8 @@ export class PictureFrame extends LitElement {
                 width: 100%;
             }
 
-            .frame-image video {
+            .frame-image .video {
                 width: 360px;
-            }
-
-            :host([href = '']) a {
-                display: none;
             }
 
             /* two image classes, image-tall & image-wide */
@@ -80,9 +102,9 @@ export class PictureFrame extends LitElement {
     }
 
     render() {
-        if (this.type !== 'image' && this.type !== 'video' && this.type !== 'youtube') {
+        if (this.type !== 'image' && this.type !== 'video' && this.type !== 'youtube' && this.type !== 'pdf') {
             return html `
-                <p><strong> Please set the 'type' attribute to 'image', 'video', or 'youtube'!</strong></p>
+                <p><strong> Please set the 'type' attribute to 'image', 'video', 'youtube', 'pdf'!</strong></p>
             `
         } else if (this.displayLocation === 'left' || this.displayLocation === 'l') {
             return this.imageLeft();
@@ -102,13 +124,15 @@ export class PictureFrame extends LitElement {
             <div class='picture-frame-container'>
                 <div class='img-container img-container-left'>
                     <div class='frame-item frame-image'>
-                        <img src="${this.src}" alt="${this.alt}">
-                        <video src="${this.src}" controls></video>
-                        <iframe width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <img class='image' src="${this.src}" alt="${this.alt}">
+                        <video class='video' src="${this.src}" controls></video>
+                        <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="pdf" width="420" src="${this.src}" frameborder="0"></iframe> 
+                        <!-- Implement PDFObject npm -->
                     </div>    
                     <div class='frame-item frame-text'>
-                        <p>${this.caption}</p>
-                        <a href="${this.href}">${this.anchorText}</a>
+                        <p class='caption'>${this.caption}</p>
+                        <a class='url' href="${this.href}">${this.anchorText}</a>
                     </div>
                 </div>
             </div>
@@ -123,13 +147,14 @@ export class PictureFrame extends LitElement {
             <div class='picture-frame-container'>
                 <div class='img-container img-container-right'>
                     <div class='frame-item frame-text'>
-                        <p>${this.caption}</p>
-                        <a href="${this.href}">${this.anchorText}</a>
+                        <p class='caption'>${this.caption}</p>
+                        <a class='url' href="${this.href}">${this.anchorText}</a>
                     </div>
                     <div class='frame-item frame-image'>
-                        <img src="${this.src}" alt="${this.alt}">
-                        <video src="${this.src}"></video>
-                        <iframe src="${this.src}" frameborder="0"></iframe>
+                        <img class='image' src="${this.src}" alt="${this.alt}">
+                        <video class='video' src="${this.src}" controls></video>
+                        <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="pdf" src="${this.src}" frameborder="0"></iframe>
                     </div>   
                 </div>
             </div>

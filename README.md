@@ -24,7 +24,8 @@ Zach Dodson
     * `image` for an image file
     * `video` for a local video file
     * `youtube` for a youtube link
-      * Important note about youtube links: You **MUST** use the link provided when you click 'share', then click 'embed'. Copy and paste the link shown here into the `src` attribute: ![Look for the text "src", and copy the link quoted within it. DO NOT COPY THE QUOTES!](./assets/images/Youtube%20Link.png)
+      * Important note about youtube links: You **MUST** use the link provided when you click 'share', then click 'embed'. Copy and paste the link shown here into the `src` attribute: ![Look for the text "src", and copy the link quoted within it. DO NOT COPY THE QUOTES!](./assets/images/youtube-link-resize-60.png)
+    * `pdf` for a pdf file *NOT YET IMPLEMENTED*
   * Attributes:
     * `display-location`
       * **Type**: String
@@ -55,6 +56,7 @@ Zach Dodson
         * `image` - local directory image file or image link
         * `video` - local directory video file
         * `youtube` - YouTube link from Embed code (instructions above)
+        * `pdf` - PDF File. Will also generate clickable text to preview PDF in new tab, or download the file onto the user's device. *NOT YET IMPLEMENTED*
     * `border`
       * **Type**: Boolean
       * **Description**: Displays a border around the whole element
@@ -63,7 +65,3 @@ Zach Dodson
         * `false` - Border is not shown
 
 ---
-
-### Features to add
-
-* Video player in picture-frame.js

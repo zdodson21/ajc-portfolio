@@ -14,10 +14,9 @@ export class PictureFrame extends LitElement {
         this.displayLocation = '';
         this.src = '';
         this.alt = '';
-        // this.caption = '';
         this.href = '';
         this.anchorText = '';
-        this.type = ''; // maybe add document type if I can figure out how to make it work
+        this.type = '';
         this.border = true;
         this.fileName = '';
     }
@@ -244,9 +243,6 @@ export class PictureFrame extends LitElement {
             alt: {
                 type: String,
             },
-            // caption: {
-            //     type: String,
-            // },
             href: {
                 type: String,
             },

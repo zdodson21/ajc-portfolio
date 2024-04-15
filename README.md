@@ -13,7 +13,7 @@ Zach Dodson
 
 ---
 
-### How stuff works
+## How stuff works
 
 * `<picture-frame>` & `picture-frame.js`
   * When implementing `<picture-frame>`, you must specify the `display-location` attribute as any of the following options:

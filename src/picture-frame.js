@@ -14,7 +14,7 @@ export class PictureFrame extends LitElement {
         this.displayLocation = '';
         this.src = '';
         this.alt = '';
-        this.caption = '';
+        // this.caption = '';
         this.href = '';
         this.anchorText = '';
         this.type = ''; // maybe add document type if I can figure out how to make it work
@@ -76,6 +76,11 @@ export class PictureFrame extends LitElement {
                 display: none;
             }
 
+            .frame-item {
+                margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-2);
+                padding: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-2);
+            }
+
             /* Create statement that will set display: none; when both caption & href are empty */
 
             .picture-frame-container {
@@ -96,6 +101,34 @@ export class PictureFrame extends LitElement {
 
             .frame-image .video {
                 width: 360px;
+            }
+
+            .pdf > iframe {
+                border-style: var(--ajc-border-default-frame2);
+            }
+
+            .pdf-controls > a {
+                text-align: center
+            }
+
+            .pdf-controls > .pdf-controls-flex-item > a:visited, .pdf-controls > .pdf-controls-flex-item > a {
+                color: var(--ajc-color-default-link);
+            }
+
+            .pdf-controls > .pdf-controls-flex-item > a:hover, .pdf-controls > .pdf-controls-flex-item > a:focus {
+                color: var(--ajc-color-default-visited);
+                text-decoration: none;
+            }
+
+            .pdf-controls {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+            }
+
+            .pdf-controls > .pdf-controls-flex-item {
+                width: 100%;
+                text-align: center;
             }
 
             /* two image classes, image-tall & image-wide */
@@ -129,15 +162,19 @@ export class PictureFrame extends LitElement {
                         <video class='video' src="${this.src}" controls></video>
                         <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         <div class='pdf'>
-                            <iframe src="" frameborder="0"></iframe>
+                            <iframe src="${this.src}" width='100%' height='500'></iframe>
                             <div class='pdf-controls'>
-                                <a href="${this.src}" target='_blank'>Preview</a>
-                                <a href="${this.src}" download='${this.fileName}'>Download</a>
+                                <div class='pdf-controls-flex-item'>
+                                    <a href="${this.src}" target='_blank'>Preview</a>
+                                </div>
+                                <div class='pdf-controls-flex-item'> 
+                                    <a href="${this.src}" download='${this.fileName}'>Download</a>
+                                </div>
                             </div>
                         </div>
                     </div>    
                     <div class='frame-item frame-text'>
-                        <p class='caption'>${this.caption}</p>
+                        <p class='caption'><slot></slot></p>
                         <a class='url' href="${this.href}">${this.anchorText}</a>
                     </div>
                 </div>
@@ -188,6 +225,8 @@ export class PictureFrame extends LitElement {
         `
     }
 
+    // Might need to make method that detects lack of text in both <p> and <a> in order to display only display the media item
+
     static get properties() {
         return {
             displayLocation: {
@@ -200,9 +239,9 @@ export class PictureFrame extends LitElement {
             alt: {
                 type: String,
             },
-            caption: {
-                type: String,
-            },
+            // caption: {
+            //     type: String,
+            // },
             href: {
                 type: String,
             },

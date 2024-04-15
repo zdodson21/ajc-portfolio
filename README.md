@@ -60,7 +60,7 @@ Zach Dodson
         * `image` - local directory image file or image link
         * `video` - local directory video file
         * `youtube` - YouTube link from Embed code (instructions above)
-        * `pdf` - PDF File. Will also generate clickable text to preview PDF in new tab, or download the file onto the user's device. *NOT YET IMPLEMENTED*
+        * `pdf` - PDF File. Will also generate clickable text to preview PDF in new tab, or download the file onto the user's device.
 
     * `border`
       * **Type**: Boolean

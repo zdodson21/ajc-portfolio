@@ -40,9 +40,9 @@ Zach Dodson
     * `alt`
       * **Type**: String
       * **Description**: Alternative text in case image does not load, or no `src` attribute is defined when `type="image`. Also important for accessibility.
-    * `caption`
+    <!-- * `caption`
       * **Type**: String
-      * **Description**: Text description of piece of media.
+      * **Description**: Text description of piece of media. -->
     * `href`
       * **Type**: String
       * **Description**: The location you wish for a link to go to.

@@ -24,7 +24,7 @@ Zach Dodson
     * `image` for an image file
     * `video` for a local video file
     * `youtube` for a youtube link
-      * Important note about youtube links: You **MUST** use the link provided when you click 'share', then click 'embed'. Copy and paste the link shown here into the `src` attribute: ![Look for the text "src", and copy the link quoted within it. DO NOT COPY THE QUOTES!](./assets/images/youtube-link-resize-60.png)
+      * Important note about youtube links: You **MUST** use the link provided when you click 'share', then click 'embed'. Copy and paste the link shown here into the `src` attribute: ![Look for the text "src", and copy the link quoted within it. DO NOT COPY THE QUOTES!](./assets/images/README-assets/youtube-link-resize-60.png)
     * `pdf` for a pdf file *NOT YET IMPLEMENTED*
   * Attributes:
     * `display-location`

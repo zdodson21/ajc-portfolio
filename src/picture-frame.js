@@ -76,9 +76,14 @@ export class PictureFrame extends LitElement {
                 display: none;
             }
 
-            .frame-item {
-                margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-2);
-                padding: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-2);
+            .img-container-left > .frame-item {
+                margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
+                padding: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
+            }
+
+            .img-container-right > .frame-item {
+                margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
+                padding: var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
             }
 
             /* Create statement that will set display: none; when both caption & href are empty */

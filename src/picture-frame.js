@@ -75,6 +75,10 @@ export class PictureFrame extends LitElement {
                 display: none;
             }
 
+            .caption:empty {
+                display: none;
+            } /* Work on this later */
+
             .img-container-left > .frame-item {
                 margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
                 padding: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
@@ -97,6 +101,13 @@ export class PictureFrame extends LitElement {
                 padding: var(--ajc-spacing-default-4);
                 margin: var(--ajc-spacing-default-7) var(--ajc-spacing-default-0);
                 width: 920px;
+            }
+
+            .img-container-top {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
             }
 
             .img-container .frame-item {
@@ -194,15 +205,25 @@ export class PictureFrame extends LitElement {
             <div class='picture-frame-container'>
                 <div class='img-container img-container-right'>
                     <div class='frame-item frame-text'>
-                        <p class='caption'>${this.caption}</p>
+                        <p class='caption'><slot></slot></p>
                         <a class='url' href="${this.href}">${this.anchorText}</a>
                     </div>
                     <div class='frame-item frame-image'>
                         <img class='image' src="${this.src}" alt="${this.alt}">
                         <video class='video' src="${this.src}" controls></video>
                         <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <!-- <iframe class="pdf" src="${this.src}" frameborder="0"></iframe> -->
-                    </div>   
+                        <div class='pdf'>
+                            <iframe src="${this.src}" width='100%' height='500'></iframe>
+                            <div class='pdf-controls'>
+                                <div class='pdf-controls-flex-item'>
+                                    <a href="${this.src}" target='_blank'>Preview</a>
+                                </div>
+                                <div class='pdf-controls-flex-item'> 
+                                    <a href="${this.src}" download='${this.fileName}'>Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         `
@@ -216,20 +237,29 @@ export class PictureFrame extends LitElement {
             <div class='picture-frame-container'>
                 <div class='img-container img-container-top'>
                     <div class='frame-item frame-image'>
-                        <img src="${this.src}" alt="${this.alt}">
-                        <video src="${this.src}" controls></video>
-                        <iframe width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <img class='image' src="${this.src}" alt="${this.alt}">
+                        <video class='video' src="${this.src}" controls></video>
+                        <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class='pdf'>
+                            <iframe src="${this.src}" width='100%' height='500'></iframe>
+                            <div class='pdf-controls'>
+                                <div class='pdf-controls-flex-item'>
+                                    <a href="${this.src}" target='_blank'>Preview</a>
+                                </div>
+                                <div class='pdf-controls-flex-item'> 
+                                    <a href="${this.src}" download='${this.fileName}'>Download</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>    
                     <div class='frame-item frame-text'>
-                        <p>${this.caption}</p>
-                        <a href="${this.href}">${this.anchorText}</a>
+                        <p class='caption'><slot></slot></p>
+                        <a class='url' href="${this.href}">${this.anchorText}</a>
                     </div>
                 </div>
             </div>
         `
     }
-
-    // Might need to make method that detects lack of text in both <p> and <a> in order to display only display the media item
 
     static get properties() {
         return {

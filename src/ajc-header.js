@@ -1,8 +1,8 @@
 import {LitElement, html, css} from 'lit';
-import { directive } from 'lit/async-directive.js';
 
 /**
  * @author {Zach Dodson}
+ * This component is NOT open source and not to be made open source for public use. This component is designed specifically for the ajc-portfolio project.
  */
 
 export class AJCHeader extends LitElement {

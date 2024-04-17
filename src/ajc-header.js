@@ -39,7 +39,15 @@ export class AJCHeader extends LitElement {
             nav {
                 grid-area: bottombar;
             }
+
+            nav > a:visited, nav > a , .icon:visited, .icon {
+                color: var(--ajc-color-default-link);
+            }
             
+            nav > a:hover, nav > a:focus, .icon:hover, .icon:focus {
+                color: var(--ajc-color-default-visited);
+                text-decoration: none;
+            }
         `
     }
 
@@ -49,10 +57,10 @@ export class AJCHeader extends LitElement {
                 <a href="/index.html" class='icon'><img src="" alt="icon" ></a>
                     <h1><slot></slot></h1>
                     <nav>
-                        <a href="Portfolio"></a>
+                        <a href="">Portfolio</a>
                         <a href=""></a>
                         <a href=""></a>
-                        <a href="About Me"></a>
+                        <a href="/html/about-me.html">About Me</a>
                     </nav>
             </div>
         `

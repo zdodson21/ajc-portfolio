@@ -2,6 +2,7 @@ import {LitElement, html, css } from 'lit';
 
 /**
  * @author {Zach Dodson}
+ * This web component serves the purpose of simplifying the process of importing images into this portfolio website, allowing the owner(s) to easily edit how pictures and their descriptions are displayed
  */
 export class PictureFrame extends LitElement {
 

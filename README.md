@@ -16,19 +16,23 @@ Zach Dodson
 ## How stuff works
 
 * `<picture-frame>` & `picture-frame.js`
-  * When implementing `<picture-frame>`, you must specify the `display-location` attribute as any of the following options:
-    * `left` or `l`
-    * `right` or `r`
-    * `top` or `t`
+  * *Description*: Serves the purpose of simplifying the process of inserting art work (or other file types) into portfolio, allowing the owner(s) of ajc-portfolio to quickly add or remove art works.
+  
+  * *Important Stuff to Know*:
+  
+    * When implementing `<picture-frame>`, you must specify the `display-location` attribute as any of the following options:
+      * `left` or `l`
+      * `right` or `r`
+      * `top` or `t`
 
-  * Also when implementing `picture-frame`, you must specify the `type` attribute for one of the three attribute types you wish to use:
-    * `image` for an image file
-    * `video` for a local video file
-    * `youtube` for a youtube link
-      * Important note about youtube links: You **MUST** use the link provided when you click 'share', then click 'embed'. Copy and paste the link shown here into the `src` attribute: ![Look for the text "src", and copy the link quoted within it. DO NOT COPY THE QUOTES!](./assets/images/README-assets/youtube-link-resize-60.png)
-    * `pdf` for a pdf file
+    * Also when implementing `picture-frame`, you must specify the `type` attribute for one of the three attribute types you wish to use:
+      * `image` for an image file
+      * `video` for a local video file
+      * `youtube` for a youtube link
+        * Important note about youtube links: You **MUST** use the link provided when you click 'share', then click 'embed'. Copy and paste the link shown here into the `src` attribute: ![Look for the text "src", and copy the link quoted within it. DO NOT COPY THE QUOTES!](./assets/images/README-assets/youtube-link-resize-60.png)
+      * `pdf` for a pdf file
 
-  * Attributes:
+  * *Attributes*:
     * `display-location`
       * **Type**: String
       * **Description**: Where you want your piece of media to appear, the left side, right side, or top of the frame.
@@ -72,5 +76,31 @@ Zach Dodson
     * `file-name`
       * **Type**: String
       * **Description**: The name for a downloadable file.
+
+  * `<ajc-header>` & `ajc-header.js`
+    * *Description*: Serves as a common header for ajc-portfolio. To apply a header, insert text between `<ajc-header></ajc-header>` tags. No attributes.
+
+  * `<ajc-footer>` & `ajc-footer.js`
+    * *Description*: Serves as a common footer for ajc-portfolio. No changes applyable using HTML tag. No attributes.
+  
+  * `<art-carousel>` & `art-carousel.js`
+    * *Description*: A simple way to create a carousel for numerous images. This component will be forked from this project and made into an open source NPM package. Link will be added for GitHub Repo & NPM page here, along with install script as soon as possible.
+      * [GitHub]()
+      * [NPM Page]()
+      * **Install Script**: `npm install`
+
+    * *Important Stuff to Know*:
+
+    * *Attributes*:
+  
+  * `<my-social-media>` & `<my-social-media.js`
+    * *Description*: A simple way to create a list of social media links utilizing the logos of numerous social media sites, as well as other pages people may want to share their profiles of. This component will be forked from this project and made into an open source NPM package. Link will be added for GitHub Repo & NPM page here, along with install script as soon as possible.
+      * [GitHub]()
+      * [NPM Page]()
+      * **Install Script**: `npm install`
+
+    * *Important Stuff to Know*:
+
+    * *Attributes*:
 
 ---

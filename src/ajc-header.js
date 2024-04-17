@@ -27,8 +27,11 @@ export class AJCHeader extends LitElement {
                 grid-template-columns: 128px 2fr 128px;
             }
 
-            .icon {
+            .icon-container {
                 grid-area: icon;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             h1 {
@@ -54,7 +57,9 @@ export class AJCHeader extends LitElement {
     render() {
         return html`
             <div class='header-container'>
-                <a href="/index.html" class='icon'><img src="" alt="icon" ></a>
+                <div class='icon-container'>
+                    <a href="/index.html" class='icon'><img src="" alt="icon" ></a>
+                </div>
                     <h1><slot></slot></h1>
                     <nav>
                         <a href="">Portfolio</a>

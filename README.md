@@ -16,7 +16,10 @@ Zach Dodson
 ## How stuff works
 
 * `<picture-frame>` & `picture-frame.js`
-  * *Description*: Serves the purpose of simplifying the process of inserting art work (or other file types) into portfolio, allowing the owner(s) of ajc-portfolio to quickly add or remove art works.
+  * *Description*: Serves the purpose of simplifying the process of inserting art work (or other file types) into portfolio, allowing the owner(s) of ajc-portfolio to quickly add or remove art works. This component will be forked from this project and made into an open source NPM package. Link will be added for GitHub Repo & NPM page here, along with install script as soon as possible.
+    * [GitHub]()
+    * [NPM Page]()
+    * **Install Script**: `npm install`
   
   * *Important Stuff to Know*:
   

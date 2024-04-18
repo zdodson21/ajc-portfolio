@@ -18,29 +18,41 @@ export class AJCHeader extends LitElement {
 
     static get styles() {
         return css`
-            :host {
-                display: grid;
-                grid-template-areas:
-                    "icon topbar    blank"
-                    "icon bottombar blank";
-                width: 100%;
-                grid-template-columns: 128px 2fr 128px;
+            .header-container {
+                display: grid; 
+                grid-template-columns: 128px 1fr 128px; 
+                grid-template-rows: 0.15fr 0.15fr; 
+                gap: 0px 0px; 
+                grid-template-areas: 
+                    "icon topbar blank"
+                    "icon bottombar blank"; 
             }
 
-            .icon-container {
+            .icon {
                 grid-area: icon;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                padding: var(--ajc-spacing-default-2);
             }
 
-            h1 {
+            .topbar {
                 grid-area: topbar;
                 text-align: center;
+                padding: var(--ajc-spacing-default-2);
+            }
+
+            .bottombar {
+                grid-area: bottombar;
+            }
+
+            .blank {
+                grid-area: blank;
             }
 
             nav {
-                grid-area: bottombar;
+                display: flex;
+                justify-content: space-evenly;
             }
 
             nav > a:visited, nav > a , .icon:visited, .icon {
@@ -57,16 +69,21 @@ export class AJCHeader extends LitElement {
     render() {
         return html`
             <div class='header-container'>
-                <div class='icon-container'>
-                    <a href="/index.html" class='icon'><img src="" alt="icon" ></a>
+                <div class='icon'>
+                    <a href="/index.html"><img src="" alt="icon" ></a>
                 </div>
+                <div class='topbar'>
                     <h1><slot></slot></h1>
+                </div>
+                <div class='bottombar'>
                     <nav>
                         <a href="">Portfolio</a>
-                        <a href=""></a>
-                        <a href=""></a>
+                        <a href="">Template</a>
+                        <a href="">Template</a>
                         <a href="/html/about-me.html">About Me</a>
                     </nav>
+                </div>
+                <div class='blank'></div>
             </div>
         `
     }

@@ -8,7 +8,7 @@ html {
     font-optical-sizing: auto;
 }
 
-body {
+main {
     margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-10);
 }
 

@@ -17,6 +17,17 @@ export class AJCFooter extends LitElement {
 
     static get styles() {
         return css`
+            .footer-container {
+                background-color: blue;
+            }
+            
+            .github {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: var(--ajc-spacing-default-4);
+            }
+            
             a:visited, a {
                 color: var(--ajc-color-default-link);
             }
@@ -25,13 +36,21 @@ export class AJCFooter extends LitElement {
                 color: var(--ajc-color-default-visited);
                 text-decoration: none;
             }
+
+
         `
     }
 
     render() {
         return html`
-            <a href="https://github.com/zdodson21/ajc-portfolio"><img src="" alt="GitHub Logo"></a>
-            <a href="https://github.com/zdodson21/ajc-portfolio">GitHub Repository</a>
+            <div class='footer-container'>
+                <section>
+                    <div class='github'>
+                        <a href="https://github.com/zdodson21/ajc-portfolio"><img src="/assets/icons/GitHub/github-mark-white.svg" alt="GitHub Logo" style='width: 48px;'></a>
+                        <a href="https://github.com/zdodson21/ajc-portfolio">GitHub Repository</a>
+                    </div>
+                </section>
+            </div>
             <!-- Write out a notice stating that all art work here belongs to the original owner and is not permitted to be used elsewhere unless otherwise stated -->
         `
     }

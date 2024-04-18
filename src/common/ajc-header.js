@@ -33,6 +33,8 @@ export class AJCHeader extends LitElement {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                width: 128px;
+                height: 128px;
                 padding: var(--ajc-spacing-default-2);
             }
 
@@ -53,6 +55,7 @@ export class AJCHeader extends LitElement {
             nav {
                 display: flex;
                 justify-content: space-evenly;
+                flex-wrap: wrap;
             }
 
             nav > a:visited, nav > a , .icon:visited, .icon {
@@ -70,7 +73,7 @@ export class AJCHeader extends LitElement {
         return html`
             <div class='header-container'>
                 <div class='icon'>
-                    <a href="/index.html"><img src="" alt="icon" ></a>
+                    <a href="/index.html"><img src="/assets/test/images/Custom-Icon-Design-Flatastic-1-Add-1.svg" alt="icon" style="width: 100px;"></a>
                 </div>
                 <div class='topbar'>
                     <h1><slot></slot></h1>

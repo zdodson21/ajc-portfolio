@@ -46,8 +46,8 @@ export class AJCFooter extends LitElement {
             <div class='footer-container'>
                 <section>
                     <div class='github'>
-                        <a href="https://github.com/zdodson21/ajc-portfolio"><img src="/assets/icons/GitHub/github-mark-white.svg" alt="GitHub Logo" style='width: 48px;'></a>
-                        <a href="https://github.com/zdodson21/ajc-portfolio">GitHub Repository</a>
+                        <a href="https://github.com/zdodson21/ajc-portfolio" target='_blank'><img src="/assets/icons/GitHub/github-mark-white.svg" alt="GitHub Logo" style='width: 48px;'></a>
+                        <a href="https://github.com/zdodson21/ajc-portfolio" target='_blank'>GitHub Repository</a>
                     </div>
                 </section>
             </div>

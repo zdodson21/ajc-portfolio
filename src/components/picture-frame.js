@@ -262,6 +262,71 @@ export class PictureFrame extends LitElement {
         `
     }
 
+    // Blocks
+
+    /**
+     * Displays the image block
+     */
+    image() {
+        return html`
+        
+        `
+    }
+
+    /**
+     * Displays the video block
+     */
+    video() {
+        return html`
+        
+        `
+    }
+
+    /**
+     * Displays the PDF block
+     */
+    pdf() {
+        return html`
+        
+        `
+    }
+
+    /**
+     * Displays the youtube block
+     */
+    youtube() {
+        return html`
+        
+        `
+    }
+
+    /**
+     * Displays the creator provided text
+     */
+    text() {
+        return html`
+        
+        `
+    }
+
+    /**
+     * Displays options to preview or download images
+     */
+    fileOptions() {
+        return html`
+        
+        `
+    }
+
+    /**
+     * Displays a link to another website (provided by creator)
+     */
+    anchor() {
+        return html`
+        
+        `
+    }
+
     static get properties() {
         return {
             displayLocation: {

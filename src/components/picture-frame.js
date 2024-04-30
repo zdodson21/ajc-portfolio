@@ -24,6 +24,8 @@ export class PictureFrame extends LitElement {
 
     static get styles() {
         return css`
+            /* TODO Need to remove the below CSS as it will *hopefully* not be needed */
+            
             :host([type='image']) .frame-image .image {
                 display: content;
             } :host([type='image']) .frame-image .video {

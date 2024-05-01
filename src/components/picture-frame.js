@@ -264,14 +264,127 @@ export class PictureFrame extends LitElement {
         `
     }
 
+    // Logic handling
+    loadHandler() {
+        // TODO Create a diagram that will detail how to create the loading sequence, such as what will determine what orientation the picture frame is in, piecing everything together, etc.
+
+        // Create proper wrapper
+        switch(this.displayLocation) {
+            case 'left' || 'l':
+                this.wrapperCreator('left');
+                break;
+            case 'right' || 'r':
+                this.wrapperCreator('right');
+                break;
+            case 'top' || 't':
+                this.wrapperCreator('top');
+                break;
+            default:
+                return html `Please set the 'display-location' attribute to either left (l), right (r), or top (r)!`;
+        }
+
+        // Generate based on filetype
+        switch(this.type) {
+            case 'image':
+                this.image();
+                break;
+            case 'video':
+                this.video();
+                break;
+            case 'youtube':
+                this.youtube();
+                break;
+            case 'pdf':
+                this.pdf();
+                break;
+            default:
+                return html `Please set the 'type' attribute to either 'image', 'video', 'youtube', or 'pdf'!`;
+        }
+    }
+
+
+
+
     // Blocks
+    // TODO each code block should be generated through JS, not return HTMLs
+
+    /**
+     * Generates a wrapper based on the given file type, orientation, and href.
+     *
+     * @param {string} orientation - The orientation of the wrapper.
+     * @return {type} The generated wrapper.
+     */
+    wrapperCreator(orientation) {
+        // generates generic wrapper, plus will create wrappings for every other aspect based on what is passed in
+        const componentWrap = this.shadowRoot.createElement('div');
+        componentWrap.setAttribute('class', 'picture-frame-container');
+        this.appendChild(componentWrap);
+
+        switch(orientation) {
+            case 'left':
+                this.lefAndTopWrappers('left');
+                break;
+            case 'right':
+                this.rightWrappers();
+                break;
+            case 'top':
+                this.lefAndTopWrappers('top');
+                break;
+            default:
+                console.error('no orientation specified');
+        }
+
+        const imgContainer = this.shadowRoot.querySelector('.img-container');
+        const frameImage = this.shadowRoot.createElement('div');
+        const frameText = this.shadowRoot.createElement('div');
+        frameImage.setAttribute('class', 'frame-item frame-image');
+        frameText.setAttribute('class', 'frame-item frame-text');
+
+        switch(orientation) {
+            case 'left' || 'top':
+                imgContainer.appendChild(frameImage);
+                imgContainer.appendChild(frameText);
+                break;
+            case 'right':
+                imgContainer.appendChild(frameText);
+                imgContainer.appendChild(frameImage);
+                break;
+            default:
+                console.error('no orientation specified');
+        }
+    }
+
+    lefAndTopWrappers(leftOrTop) {
+        const wrapper = this.shadowRoot.querySelector('.picture-frame-container');
+        const leftOrTopWrapper = this.shadowRoot.createElement('div');
+        
+        switch(leftOrTop) {
+            case 'left':
+                leftOrTopWrapper.setAttribute('class', 'img-container img-container-left');
+                break;
+            case 'top':
+                leftOrTopWrapper.setAttribute('class', 'img-container img-container-top');
+                break;
+            default:
+                console.error('no leftOrTop specified');
+        }
+
+        wrapper.appendChild(leftOrTopWrapper);
+    }
+
+    rightWrappers() {
+        const wrapper = this.shadowRoot.querySelector('.picture-frame-container');
+        const rightWrapper = this.shadowRoot.createElement('div');
+        rightWrapper.setAttribute('class', 'img-container img-container-right');
+        wrapper.appendChild(rightWrapper);
+    }
 
     /**
      * Displays the image block
      */
     image() {
         return html`
-        
+            <img class='image' src="${this.src}" alt="${this.alt}">
         `
     }
 
@@ -280,16 +393,26 @@ export class PictureFrame extends LitElement {
      */
     video() {
         return html`
-        
+            <video class='video' src="${this.src}" controls></video>
         `
     }
 
     /**
-     * Displays the PDF block
+     * Displays the PDF block. Creates it's own wrappers since they are PDF specific
      */
     pdf() {
         return html`
-        
+            <div class='pdf'>
+                <iframe src="${this.src}" width='100%' height='500'></iframe>
+                <div class='pdf-controls'>
+                    <div class='pdf-controls-flex-item'>
+                        <a href="${this.src}" target='_blank'>Preview</a>
+                    </div>
+                    <div class='pdf-controls-flex-item'> 
+                        <a href="${this.src}" download='${this.fileName}'>Download</a>
+                    </div>
+                </div>
+            </div>
         `
     }
 
@@ -298,7 +421,7 @@ export class PictureFrame extends LitElement {
      */
     youtube() {
         return html`
-        
+            <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         `
     }
 
@@ -307,16 +430,7 @@ export class PictureFrame extends LitElement {
      */
     text() {
         return html`
-        
-        `
-    }
-
-    /**
-     * Displays options to preview or download images
-     */
-    fileOptions() {
-        return html`
-        
+            <p class='caption'><slot></slot></p>
         `
     }
 
@@ -325,7 +439,7 @@ export class PictureFrame extends LitElement {
      */
     anchor() {
         return html`
-        
+            <a class='url' href="${this.href}">${this.anchorText}</a>
         `
     }
 

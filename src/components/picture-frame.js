@@ -22,8 +22,8 @@ export class PictureFrame extends LitElement {
         this.fileName = '';
     }
 
-    firstUpdated() {
-        console.log('first updated called...');
+    connectedCallback() {
+        super.connectedCallback();
         this.loadHandler();
     }
 
@@ -265,36 +265,27 @@ export class PictureFrame extends LitElement {
         // TODO Create a diagram that will detail how to create the loading sequence, such as what will determine what orientation the picture frame is in, piecing everything together, etc.
         console.log('load handler called...');
         // Create proper wrapper
-        switch(this.displayLocation) {
-            case 'left' || 'l':
-                this.wrapperCreator('left');
-                break;
-            case 'right' || 'r':
-                this.wrapperCreator('right');
-                break;
-            case 'top' || 't':
-                this.wrapperCreator('top');
-                break;
-            default:
-                return html `Please set the 'display-location' attribute to either left (l), right (r), or top (r)!`;
+        if (this.displayLocation === 'left' || this.displayLocation === 'l') {
+            this.wrapperCreator('left');
+        } else if (this.displayLocation === 'right' || this.displayLocation === 'r') {
+            this.wrapperCreator('right');
+        } else if (this.displayLocation === 'top' || this.displayLocation === 't') {
+            this.wrapperCreator('top');
+        } else {
+            return html `Please set the 'display-location' attribute to either left (l), right (r), or top (r)!`;
         }
 
         // Generate based on filetype (fixes previous load efficiency issues)
-        switch(this.type) {
-            case 'image':
-                this.image();
-                break;
-            case 'video':
-                this.video();
-                break;
-            case 'youtube':
-                this.youtube();
-                break;
-            case 'pdf':
-                this.pdf();
-                break;
-            default:
-                return html `Please set the 'type' attribute to either 'image', 'video', 'youtube', or 'pdf'!`;
+        if (this.type === 'image') {
+            this.image();
+        } else if (this.type === 'video') {
+            this.video();
+        } else if (this.type === 'youtube') {
+            this.youtube();
+        } else if (this.type === 'pdf') {
+            this.pdf();
+        } else {
+            return html `Please set the 'type' attribute to either 'image', 'video', 'youtube', or 'pdf'!`;
         }
 
         this.text();
@@ -321,19 +312,18 @@ export class PictureFrame extends LitElement {
         // finds generic wrapper, plus will create wrappings for every other aspect based on what is passed in
         const componentWrap = this.shadowRoot.querySelector('.picture-frame-container');
 
-        switch(orientation) {
-            case 'left':
-                this.mediaWrapper('left');
-                break;
-            case 'right':
-                this.mediaWrapper('right');
-                break;
-            case 'top':
-                this.mediaWrapper('top');
-                break;
-            default:
-                console.error('no orientation specified');
+        console.log('wrapperCreator called with orientation: ' + orientation);
+
+        if (orientation === 'left') {
+            this.mediaWrapper('left');
+        } else if (orientation === 'right') {
+            this.mediaWrapper('right');
+        } else if (orientation === 'top') {
+            this.mediaWrapper('top');
+        } else {
+            console.error('no orientation specified');
         }
+
 
         const imgContainer = this.shadowRoot.querySelector('.img-container');
         const frameImage = this.shadowRoot.createElement('div');
@@ -341,21 +331,20 @@ export class PictureFrame extends LitElement {
         frameImage.setAttribute('class', 'frame-item frame-image');
         frameText.setAttribute('class', 'frame-item frame-text');
 
-        switch(orientation) {
-            case 'left' || 'top':
-                imgContainer.appendChild(frameImage);
-                imgContainer.appendChild(frameText);
-                break;
-            case 'right':
-                imgContainer.appendChild(frameText);
-                imgContainer.appendChild(frameImage);
-                break;
-            default:
-                console.error('no orientation specified');
+        if (orientation === 'left' || orientation === 'top') {
+            imgContainer.appendChild(frameImage);
+            imgContainer.appendChild(frameText);
+        } else if (orientation === 'right') {
+            imgContainer.appendChild(frameText);
+            imgContainer.appendChild(frameImage);
+        } else {
+            console.error('no orientation specified');
         }
+
     }
 
     mediaWrapper(orientation) {
+        console.log('mediaWrapper called with orientation: ' + orientation);
         const container = this.shadowRoot.querySelector('.picture-frame-container');
         const wrapper = this.shadowRoot.createElement('div');
 

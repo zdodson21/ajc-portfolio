@@ -24,56 +24,8 @@ export class PictureFrame extends LitElement {
 
     static get styles() {
         return css`
-            :host([type='image']) .frame-image .image {
-                display: content;
-            } :host([type='image']) .frame-image .video {
-                display: none;
-            } :host([type='image']) .frame-image .youtube {
-                display: none;
-            } :host([type='image']) .frame-image .pdf {
-                display: none;
-            }
-
-            :host([type='video']) .frame-image .image {
-                display: none;
-            } :host([type='video']) .frame-image .video {
-                display: content;
-            } :host([type='video']) .frame-image .youtube {
-                display: none;
-            } :host([type='video']) .frame-image .pdf {
-                display: none;
-            }
-
-            :host([type='youtube']) .frame-image .image {
-                display: none;
-            } :host([type='youtube']) .frame-image .video {
-                display: none;
-            } :host([type='youtube']) .frame-image .youtube {
-                display: content;
-            } :host([type='youtube']) .frame-image .pdf {
-                display: none;
-            }
-
-            :host([type='pdf']) .frame-image .image {
-                display: none;
-            } :host([type='pdf']) .frame-image .video {
-                display: none;
-            } :host([type='pdf']) .frame-image .youtube {
-                display: none;
-            } :host([type='pdf']) .frame-image .pdf {
-                display: content;
-            }
-
             :host([border]) .img-container {
                 border-style: var(--ajc-border-default-frame1);
-            }
-
-            :host([caption='']) .caption {
-                display: none;
-            }
-
-            :host([href = '']) .url {
-                display: none;
             }
 
             .caption:empty {
@@ -174,25 +126,29 @@ export class PictureFrame extends LitElement {
             <div class='picture-frame-container'>
                 <div class='img-container img-container-left'>
                     <div class='frame-item frame-image'>
-                        <img class='image' src="${this.src}" alt="${this.alt}">
-                        <video class='video' src="${this.src}" controls></video>
-                        <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <div class='pdf'>
-                            <iframe src="${this.src}" width='100%' height='500'></iframe>
-                            <div class='pdf-controls'>
-                                <div class='pdf-controls-flex-item'>
-                                    <a href="${this.src}" target='_blank'>Preview</a>
-                                </div>
-                                <div class='pdf-controls-flex-item'> 
-                                    <a href="${this.src}" download='${this.fileName}'>Download</a>
+                        ${this.type === 'image' ? html`<img class='image' src="${this.src}" alt="${this.alt}">` : ''}
+                        ${this.type === 'video' ? html`<video class='video' src="${this.src}" controls></video>` : ''}
+                        ${this.type === 'youtube' ? html`<iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`: ''}
+                        ${this.type === 'pdf' ? html`
+                            <div class='pdf'>
+                                <iframe src="${this.src}" width='100%' height='500'></iframe>
+                                <div class='pdf-controls'>
+                                    <div class='pdf-controls-flex-item'>
+                                        <a href="${this.src}" target='_blank'>Preview</a>
+                                    </div>
+                                    <div class='pdf-controls-flex-item'> 
+                                        <a href="${this.src}" download='${this.fileName}'>Download</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ` : ''}
                     </div>    
-                    <div class='frame-item frame-text'>
-                        <p class='caption'><slot></slot></p>
-                        <a class='url' href="${this.href}">${this.anchorText}</a>
-                    </div>
+                    ${this.innerHTML !== '' || this.href !== '' ? html`
+                        <div class='frame-item frame-text'>
+                            ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
+                            ${this.href !== '' ? html`<a class='url' href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                        </div>
+                    ` : ''}
                 </div>
             </div>
         `
@@ -205,25 +161,29 @@ export class PictureFrame extends LitElement {
         return html`
             <div class='picture-frame-container'>
                 <div class='img-container img-container-right'>
-                    <div class='frame-item frame-text'>
-                        <p class='caption'><slot></slot></p>
-                        <a class='url' href="${this.href}">${this.anchorText}</a>
-                    </div>
+                    ${this.innerHTML !== '' || this.href !== '' ? html`
+                        <div class='frame-item frame-text'>
+                            ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
+                            ${this.href !== '' ? html`<a class='url' href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                        </div>
+                    ` : ''}
                     <div class='frame-item frame-image'>
-                        <img class='image' src="${this.src}" alt="${this.alt}">
-                        <video class='video' src="${this.src}" controls></video>
-                        <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <div class='pdf'>
-                            <iframe src="${this.src}" width='100%' height='500'></iframe>
-                            <div class='pdf-controls'>
-                                <div class='pdf-controls-flex-item'>
-                                    <a href="${this.src}" target='_blank'>Preview</a>
-                                </div>
-                                <div class='pdf-controls-flex-item'> 
-                                    <a href="${this.src}" download='${this.fileName}'>Download</a>
+                        ${this.type === 'image' ? html`<img class='image' src="${this.src}" alt="${this.alt}">` : ''}
+                        ${this.type === 'video' ? html`<video class='video' src="${this.src}" controls></video>` : ''}
+                        ${this.type === 'youtube' ? html`<iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`: ''}
+                        ${this.type === 'pdf' ? html`
+                            <div class='pdf'>
+                                <iframe src="${this.src}" width='100%' height='500'></iframe>
+                                <div class='pdf-controls'>
+                                    <div class='pdf-controls-flex-item'>
+                                        <a href="${this.src}" target='_blank'>Preview</a>
+                                    </div>
+                                    <div class='pdf-controls-flex-item'> 
+                                        <a href="${this.src}" download='${this.fileName}'>Download</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ` : ''}
                     </div>
                 </div>
             </div>
@@ -238,25 +198,29 @@ export class PictureFrame extends LitElement {
             <div class='picture-frame-container'>
                 <div class='img-container img-container-top'>
                     <div class='frame-item frame-image'>
-                        <img class='image' src="${this.src}" alt="${this.alt}">
-                        <video class='video' src="${this.src}" controls></video>
-                        <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <div class='pdf'>
-                            <iframe src="${this.src}" width='100%' height='500'></iframe>
-                            <div class='pdf-controls'>
-                                <div class='pdf-controls-flex-item'>
-                                    <a href="${this.src}" target='_blank'>Preview</a>
-                                </div>
-                                <div class='pdf-controls-flex-item'> 
-                                    <a href="${this.src}" download='${this.fileName}'>Download</a>
+                    ${this.type === 'image' ? html`<img class='image' src="${this.src}" alt="${this.alt}">` : ''}
+                        ${this.type === 'video' ? html`<video class='video' src="${this.src}" controls></video>` : ''}
+                        ${this.type === 'youtube' ? html`<iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`: ''}
+                        ${this.type === 'pdf' ? html`
+                            <div class='pdf'>
+                                <iframe src="${this.src}" width='100%' height='500'></iframe>
+                                <div class='pdf-controls'>
+                                    <div class='pdf-controls-flex-item'>
+                                        <a href="${this.src}" target='_blank'>Preview</a>
+                                    </div>
+                                    <div class='pdf-controls-flex-item'> 
+                                        <a href="${this.src}" download='${this.fileName}'>Download</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ` : ''}
                     </div>    
-                    <div class='frame-item frame-text'>
-                        <p class='caption'><slot></slot></p>
-                        <a class='url' href="${this.href}">${this.anchorText}</a>
-                    </div>
+                    ${this.innerHTML !== '' || this.href !== '' ? html`
+                        <div class='frame-item frame-text'>
+                            ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
+                            ${this.href !== '' ? html`<a class='url' href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                        </div>
+                    ` : ''}
                 </div>
             </div>
         `

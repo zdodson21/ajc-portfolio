@@ -106,6 +106,21 @@ export class PictureFrame extends LitElement {
                 width: 100%;
                 text-align: center;
             }
+
+            /* Mobile devices */
+            @media only screen and (max-width: 810px) {
+                .picture-frame-container {
+                    width: 100%;
+                }
+                
+                .img-container {
+                    flex-direction: column;
+                }
+
+                .frame-image > img {
+                    width: 100%;
+                }
+            }
         `
     }
 

@@ -69,7 +69,7 @@ export class AJCHeader extends LitElement {
         `
     }
 
-    render() {
+    render() { // TODO make a hamburger menu that the user can pop out if the screen size is below a certain amount
         return html`
             <div class='header-container'>
                 <div class='icon'>

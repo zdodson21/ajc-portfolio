@@ -24,12 +24,17 @@ export class PictureFrame extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
+        this.firstUpdated();
+    }
+
+    firstUpdated() {
+        console.log('first updated called...');
         this.loadHandler();
     }
 
     static get styles() {
         return css`
-            /* TODO Need to remove the below CSS as it will *hopefully* not be needed */
+            /* TODO Need to remove most of the below CSS as it will *hopefully* not be needed */
             
             :host([type='image']) .frame-image .image {
                 display: content;
@@ -172,7 +177,7 @@ export class PictureFrame extends LitElement {
             <div class='picture-frame-container'>
                 <div class='img-container img-container-left'>
                     <div class='frame-item frame-image'>
-                        <img class='image' src="${this.src}" alt="${this.alt}">
+                        ${this.type === 'image' ? html`<img class='image' src="${this.src}" alt="${this.alt}">` :''}
                         <video class='video' src="${this.src}" controls></video>
                         <iframe class="youtube" width="360" height="202.5" src="${this.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         <div class='pdf'>
@@ -296,9 +301,6 @@ export class PictureFrame extends LitElement {
     }
     
 
-
-
-
     // Blocks
     // TODO each code block should be generated through JS, not return HTMLs
 
@@ -324,7 +326,6 @@ export class PictureFrame extends LitElement {
             console.error('no orientation specified');
         }
 
-
         const imgContainer = this.shadowRoot.querySelector('.img-container');
         const frameImage = this.shadowRoot.createElement('div');
         const frameText = this.shadowRoot.createElement('div');
@@ -340,13 +341,12 @@ export class PictureFrame extends LitElement {
         } else {
             console.error('no orientation specified');
         }
-
     }
 
     mediaWrapper(orientation) {
         console.log('mediaWrapper called with orientation: ' + orientation);
         const container = this.shadowRoot.querySelector('.picture-frame-container');
-        const wrapper = this.shadowRoot.createElement('div');
+        const wrapper = document.createElement('div');
 
         wrapper.setAttribute('class', `img-container img-container-${orientation}`);
 

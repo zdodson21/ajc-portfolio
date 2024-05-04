@@ -1,15 +1,25 @@
 import {LitElement, html, css } from 'lit';
 
 /**
+ * @customElement
+ * @extends {LitElement}
  * @author {Zach Dodson}
- * This web component serves the purpose of simplifying the process of importing images into this portfolio website, allowing the owner(s) to easily edit how pictures and their descriptions are displayed
+ * This component is designed to enable users to easily create "picture frames" that can be used to display images, videos, youtube videos, or PDFs.
  */
 export class PictureFrame extends LitElement {
 
+    /**
+     * Returns the tag name for the picture-frame custom element.
+     *
+     * @return {string} The tag name 'picture-frame'
+     */
     static get tag() {
         return 'picture-frame';
     }
 
+    /**
+     * Constructor for setting initial values of displayLocation, src, alt, href, anchorText, type, border, and fileName.
+     */
     constructor() {
         super();
         this.displayLocation = '';
@@ -22,6 +32,11 @@ export class PictureFrame extends LitElement {
         this.fileName = '';
     }
 
+    /**
+     * Returns the styles for the picture frame component.
+     *
+     * @return {string} The CSS styles for the picture frame component.
+     */
     static get styles() {
         return css`
             :host([border]) .img-container {
@@ -94,6 +109,11 @@ export class PictureFrame extends LitElement {
         `
     }
 
+    /**
+     * Renders the component based on the type and display location attributes.
+     *
+     * @return {TemplateResult} The rendered template result.
+     */
     render() {
         if (this.type !== 'image' && this.type !== 'video' && this.type !== 'youtube' && this.type !== 'pdf') {
             return html `
@@ -112,6 +132,11 @@ export class PictureFrame extends LitElement {
         }
     }
 
+    /**
+     * Generates the left-aligned image content in a picture frame.
+     *
+     * @return {html} HTML content with image, video, YouTube video, or PDF based on 'type' property
+     */
     imageLeft() {
         return html`
             <div class='picture-frame-container'>
@@ -137,7 +162,7 @@ export class PictureFrame extends LitElement {
                     ${this.innerHTML !== '' || this.href !== '' ? html`
                         <div class='frame-item frame-text'>
                             ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
-                            ${this.href !== '' ? html`<a href="${this.href}" target='_blank'>${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                            ${this.href !== '' ? html`<a href="${this.href}" target='_blank'>${this.anchorText}</a>` : ''} 
                         </div>
                     ` : ''}
                 </div>
@@ -146,7 +171,9 @@ export class PictureFrame extends LitElement {
     }
 
     /**
-     * Description text on left, art on the right
+     * Generates the right-aligned image content in a picture frame.
+     *
+     * @return {html} HTML content with image, video, YouTube video, or PDF based on 'type' property
      */
     imageRight() {
         return html`
@@ -155,7 +182,7 @@ export class PictureFrame extends LitElement {
                     ${this.innerHTML !== '' || this.href !== '' ? html`
                         <div class='frame-item frame-text'>
                             ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
-                            ${this.href !== '' ? html`<a  href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                            ${this.href !== '' ? html`<a  href="${this.href}">${this.anchorText}</a>` : ''} 
                         </div>
                     ` : ''}
                     <div class='frame-item frame-image'>
@@ -182,7 +209,9 @@ export class PictureFrame extends LitElement {
     }
 
     /**
-     * Image above caption and anchor
+     * Generates the top-aligned image content in a picture frame.
+     *
+     * @return {html} HTML content with image, video, YouTube video, or PDF based on 'type' property
      */
     imageTop() {
         return html`
@@ -209,7 +238,7 @@ export class PictureFrame extends LitElement {
                     ${this.innerHTML !== '' || this.href !== '' ? html`
                         <div class='frame-item frame-text'>
                             ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
-                            ${this.href !== '' ? html`<a href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                            ${this.href !== '' ? html`<a href="${this.href}">${this.anchorText}</a>` : ''}
                         </div>
                     ` : ''}
                 </div>
@@ -217,6 +246,19 @@ export class PictureFrame extends LitElement {
         `
     }
 
+    /**
+     * Returns an object containing the properties of the component.
+     *
+     * @return {Object} An object with the following properties:
+     *   - displayLocation: A string representing the display location of the file display in the component.
+     *   - src: A string representing the source of the file display in the component.
+     *   - alt: A string representing the alternate text of the file display in the component.
+     *   - href: A string representing the hyperlink reference of the anchor in the component.
+     *   - anchorText: A string representing the anchor text of the component.
+     *   - border: A boolean indicating whether the component has a border.
+     *   - type: A string representing the file type of the file display of the component.
+     *   - fileName: A string representing the preferred file name of PDFs for downloading and previewing purposes.
+     */
     static get properties() {
         return {
             displayLocation: {

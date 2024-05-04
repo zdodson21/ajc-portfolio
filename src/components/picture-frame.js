@@ -28,22 +28,6 @@ export class PictureFrame extends LitElement {
                 border-style: var(--ajc-border-default-frame1);
             }
 
-            .caption:empty {
-                display: none;
-            } /* Work on this later */
-
-            .img-container-left > .frame-item {
-                margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
-                padding: var(--ajc-spacing-default-0) var(--ajc-spacing-default-2) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
-            }
-
-            .img-container-right > .frame-item {
-                margin: var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
-                padding: var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0) var(--ajc-spacing-default-0);
-            }
-
-            /* Create statement that will set display: none; when both caption & href are empty */
-
             .picture-frame-container {
                 display: flex;
                 justify-content: center;
@@ -63,27 +47,36 @@ export class PictureFrame extends LitElement {
                 text-align: center;
             }
 
-            .img-container .frame-item {
+            .img-container-left .frame-item, .img-container-right .frame-item {
                 width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .frame-image .video {
                 width: 360px;
             }
 
+            .frame-text {
+                display: flex;
+                flex-direction: column;
+            }
+
             .pdf > iframe {
                 border-style: var(--ajc-border-default-frame2);
+                width: 440px;
             }
 
             .pdf-controls > a {
                 text-align: center
             }
 
-            .pdf-controls > .pdf-controls-flex-item > a:visited, .pdf-controls > .pdf-controls-flex-item > a {
+            a:visited, a {
                 color: var(--ajc-color-default-link);
             }
 
-            .pdf-controls > .pdf-controls-flex-item > a:hover, .pdf-controls > .pdf-controls-flex-item > a:focus {
+            a:hover, a:focus {
                 color: var(--ajc-color-default-visited);
                 text-decoration: none;
             }
@@ -98,8 +91,6 @@ export class PictureFrame extends LitElement {
                 width: 100%;
                 text-align: center;
             }
-
-            /* two image classes, image-tall & image-wide */
         `
     }
 
@@ -146,7 +137,7 @@ export class PictureFrame extends LitElement {
                     ${this.innerHTML !== '' || this.href !== '' ? html`
                         <div class='frame-item frame-text'>
                             ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
-                            ${this.href !== '' ? html`<a class='url' href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                            ${this.href !== '' ? html`<a href="${this.href}" target='_blank'>${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
                         </div>
                     ` : ''}
                 </div>
@@ -164,7 +155,7 @@ export class PictureFrame extends LitElement {
                     ${this.innerHTML !== '' || this.href !== '' ? html`
                         <div class='frame-item frame-text'>
                             ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
-                            ${this.href !== '' ? html`<a class='url' href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                            ${this.href !== '' ? html`<a  href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
                         </div>
                     ` : ''}
                     <div class='frame-item frame-image'>
@@ -218,7 +209,7 @@ export class PictureFrame extends LitElement {
                     ${this.innerHTML !== '' || this.href !== '' ? html`
                         <div class='frame-item frame-text'>
                             ${this.innerHTML !== '' ? html`<p class='caption'><slot></slot></p>` : ''}
-                            ${this.href !== '' ? html`<a class='url' href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
+                            ${this.href !== '' ? html`<a href="${this.href}">${this.anchorText}</a>` : ''} <!--Running into a bug here with getting the anchor tag to appear-->
                         </div>
                     ` : ''}
                 </div>
